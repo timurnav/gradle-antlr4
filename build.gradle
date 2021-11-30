@@ -2,16 +2,25 @@ group 'org.example'
 version '1.0'
 
 apply plugin: 'java'
+apply plugin: 'antlr'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    antlr "org.antlr:antlr4:4.9.3"
 
     testImplementation 'org.assertj:assertj-core:3.20.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+generateGrammarSource {
+    arguments += [
+            "-Werror", "-long-messages"
+    ]
 }
 
 test {
